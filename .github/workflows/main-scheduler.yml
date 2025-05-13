@@ -2,9 +2,8 @@ name: ProjectManagementBot Scheduler
 
 on:
   schedule:
-    # Runs at 11:59 PM and 8:00 AM every day
     - cron: '59 23 * * *'
-    - cron: '0 8 * * *'
+    - cron: '55 15 * * *'
   workflow_dispatch:  # allows manual triggering
 
 jobs:
