@@ -3,7 +3,7 @@ name: ProjectManagementBot Scheduler
 on:
   schedule:
     - cron: '59 23 * * *'
-    - cron: '55 15 * * *'
+    - cron: '27 12 * * *'
   workflow_dispatch:  # allows manual triggering
 
 jobs:
