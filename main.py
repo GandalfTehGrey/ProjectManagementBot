@@ -6,8 +6,7 @@ from datetime import datetime
 
 # --- SETUP PATH ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CREDENTIALS_FILE = "credentials.json"  # ✅ Matches workflow location
-
+CREDENTIALS_FILE = "/etc/secrets/credentials.json"
 
 # --- CONFIG ---
 SPREADSHEET_NAME = 'Google Sheets Integraton Test'
@@ -58,5 +57,3 @@ if response.status_code in [200, 202]:
 else:
     print(f"❌ Failed to send message. Status Code: {response.status_code}")
     print(response.text)
-
-
