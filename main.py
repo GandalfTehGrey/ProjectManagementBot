@@ -6,7 +6,7 @@ from datetime import datetime
 
 # --- SETUP PATH ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CREDENTIALS_FILE = "/etc/secrets/credentials.json"
+CREDENTIALS_FILE = "credentials.json"
 
 # --- CONFIG ---
 SPREADSHEET_NAME = 'Google Sheets Integraton Test'
