@@ -1,23 +1,19 @@
-name: Standup Bot Scheduler
+name: ProjectManagementBot Scheduler
 
 on:
   schedule:
-    - cron: '59 23 * * *'    # 11:59 PM (nightly data capture)
-    - cron: '00 8 * * *'      # 8:00 AM (morning Teams message)
-  workflow_dispatch:          # Manual trigger option
+    - cron: '59 23 * * *'
+    - cron: '35 12 * * *'  # Posting at 6:05 PM IST
+  workflow_dispatch:  # allows manual triggering
 
 jobs:
-  run-bot:
+  run-script:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Debug directory structure
-        run: |
-          pwd
-          ls -R
-          
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -25,11 +21,12 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Create credentials
+      - name: Create credentials.json from secret
         run: |
           echo "${{ secrets.CREDENTIALS_JSON }}" > credentials.json
 
-      - name: Run Script
+      - name: Run the script
         run: python main.py
