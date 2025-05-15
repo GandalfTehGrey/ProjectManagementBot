@@ -24,9 +24,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Create credentials.json from secret
+      - name: Create credentials.json file
         run: |
-          printf '%s' "${{ secrets.CREDENTIALS_JSON }}" > credentials.json
+          printf '%b' "${{ secrets.CREDENTIALS_JSON }}" > credentials.json
+
 
       - name: Run the script
         run: python main.py
