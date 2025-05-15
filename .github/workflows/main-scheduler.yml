@@ -2,9 +2,9 @@ name: ProjectManagementBot Scheduler
 
 on:
   schedule:
-    - cron: '59 23 * * *'
-    - cron: '10 18 * * *'  # Posting at 6:10 PM IST
-  workflow_dispatch:  # allows manual triggering
+    - cron: '59 23 * * *'   # Extraction cron (UTC)
+    - cron: '38 12 * * *'   # Posting cron (UTC)
+  workflow_dispatch:         # Manual trigger
 
 jobs:
   run-script:
@@ -26,7 +26,7 @@ jobs:
 
       - name: Create credentials.json from secret
         run: |
-          echo "${{ secrets.CREDENTIALS_JSON }}" > credentials.json
+          printf '%s' "${{ secrets.CREDENTIALS_JSON }}" > credentials.json
 
       - name: Run the script
         run: python main.py
