@@ -9,10 +9,6 @@ on:
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./ProjectManagementBot  # Critical fix!
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -24,12 +20,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r ProjectManagementBot/requirements.txt
+          pip install -r requirements.txt
+        working-directory: ProjectManagementBot  # Changed from ./ProjectManagementBot
 
       - name: Create credentials
         run: |
-          echo "${{ secrets.CREDENTIALS_JSON }}" > ProjectManagementBot/credentials.json
+          echo "${{ secrets.CREDENTIALS_JSON }}" > credentials.json
+        working-directory: ProjectManagementBot  # Changed from ./ProjectManagementBot
 
       - name: Run Script
         run: python main.py
-        working-directory: ./ProjectManagementBot  # Ensures correct path
+        working-directory: ProjectManagementBot  # Changed from ./ProjectManagementBot
